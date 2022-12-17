@@ -42,6 +42,11 @@ public class F1 extends Car {
         }
     }
 
+    @Override
+    public int getCurrentSpeed() {
+        return super.getCurrentSpeed();
+    }
+
     public int getCurrentDirection() {
         return super.getcurrentDirection();
     }
