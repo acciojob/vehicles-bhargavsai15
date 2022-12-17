@@ -2,15 +2,13 @@ package com.driver;
 
 public class F1 extends Car {
 
-
     public F1(String name, boolean isManual) {
-        //Use arbitrary values for parameters which are not mentioned
         super(name,isManual);
+        //Use arbitrary values for parameters which are not mentioned
     }
 
     public void accelerate(int rate){
-        int newSpeed = 0; //set the value of new speed by using currentSpeed and rate
-        newSpeed=getCurrentSpeed()+rate;
+        int newSpeed = this.getCurrentSpeed()+rate; //set the value of new speed by using currentSpeed and rate
         /**
          * speed 0: gear 1
          * speed 1-50: gear 1
@@ -21,32 +19,30 @@ public class F1 extends Car {
          * speed more than 250: gear 6
          */
 
-        if(newSpeed == 0) {
+        if(newSpeed == 0 || newSpeed>0 && newSpeed<=50) {
             //Stop the car, set gear as 1
+            this.changeGear(1);
         }
+        else if(newSpeed>50 && newSpeed<=100)
+            this.changeGear(2);
+
+        else if(newSpeed>100 && newSpeed<=150)
+            this.changeGear(3);
+
+        else if(newSpeed>150 && newSpeed<=200)
+            this.changeGear(4);
+
+        else if(newSpeed>200 && newSpeed<=250)
+            this.changeGear(5);
+        else this.changeGear(6);
         //for all other cases, change the gear accordingly
 
         if(newSpeed > 0) {
             changeSpeed(newSpeed, getCurrentDirection());
-            int speed=getCurrentSpeed();
-            if(speed>0 && speed<=50){
-                System.out.println("gear 1");
-            }
-            if(speed>50 && speed<=100){
-                System.out.println("gear 2");
-            }
-            if(speed>100 && speed<=150){
-                System.out.println("gear 3");
-            }
-            if(speed>150 && speed<=200){
-                System.out.println("gear 4");
-            }
-            if(speed>200 && speed<=250){
-                System.out.println("gear 5");
-            }
-            if(speed>250 ){
-                System.out.println("gear 6");
-            }
         }
+    }
+
+    public int getCurrentDirection() {
+        return super.getcurrentDirection();
     }
 }
